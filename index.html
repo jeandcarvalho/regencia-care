@@ -44,9 +44,15 @@
         </form>
       </section>
 
-      <!-- Lista de pacientes ativos -->
+      <!-- Lista de pacientes -->
       <section>
-        <h2>Pacientes Ativos</h2>
+        <div class="section-header">
+          <h2>Pacientes</h2>
+          <div class="filter-bar">
+            <button id="btn-filter-internados" class="filter-btn active">Internados</button>
+            <button id="btn-filter-todos" class="filter-btn">Todos</button>
+          </div>
+        </div>
         <div id="patient-list" role="list"></div>
       </section>
 
@@ -65,9 +71,37 @@
         <h1 id="patient-header-name"></h1>
         <span id="patient-header-bed" class="header-sub"></span>
       </div>
+      <button id="btn-edit-patient" class="btn-icon" aria-label="Editar paciente" title="Editar">✏️</button>
+      <button id="btn-delete-patient" class="btn-icon btn-icon--danger" aria-label="Excluir paciente" title="Excluir">🗑️</button>
     </header>
 
     <main>
+
+      <!-- Painel de edição (oculto por padrão) -->
+      <section id="edit-patient-panel" class="card hidden">
+        <h2>Editar Paciente</h2>
+        <form id="edit-patient-form" autocomplete="off">
+          <div class="form-group">
+            <label for="edit-name">Nome completo</label>
+            <input type="text" id="edit-name" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-bed">Leito / Quarto</label>
+            <input type="text" id="edit-bed" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-status">Status</label>
+            <select id="edit-status">
+              <option value="internado">Internado</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+          <div class="btn-row">
+            <button type="button" id="btn-cancel-edit" class="btn btn-secondary">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </section>
 
       <!-- Formulário: sinais vitais -->
       <section class="card">
