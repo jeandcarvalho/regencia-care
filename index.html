@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RegênciaCare">
+  <meta name="description" content="Acompanhamento de pacientes para enfermeiros">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Regência Care</title>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       TELA 1 — Lista de Pacientes
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="screen-home" class="screen">
+
+    <header class="app-header">
+      <h1>Regência Care</h1>
+    </header>
+
+    <main>
+
+      <!-- Formulário: adicionar paciente -->
+      <section class="card">
+        <h2>Novo Paciente</h2>
+        <form id="add-patient-form" autocomplete="off">
+          <div class="form-group">
+            <label for="new-name">Nome completo</label>
+            <input type="text" id="new-name" placeholder="Ex: Maria da Silva" required>
+          </div>
+          <div class="form-group">
+            <label for="new-bed">Leito / Quarto</label>
+            <input type="text" id="new-bed" placeholder="Ex: 204B" required>
+          </div>
+          <button type="submit" class="btn btn-primary">+ Adicionar Paciente</button>
+        </form>
+      </section>
+
+      <!-- Lista de pacientes ativos -->
+      <section>
+        <h2>Pacientes Ativos</h2>
+        <div id="patient-list" role="list"></div>
+      </section>
+
+    </main>
+  </div><!-- /screen-home -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TELA 2 — Detalhes do Paciente (Sinais Vitais + Histórico)
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="screen-patient" class="screen hidden">
+
+    <header class="app-header">
+      <button id="btn-back" class="btn-back" aria-label="Voltar para lista">←</button>
+      <div class="header-info">
+        <h1 id="patient-header-name"></h1>
+        <span id="patient-header-bed" class="header-sub"></span>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Formulário: sinais vitais -->
+      <section class="card">
+        <h2>Registro de Sinais Vitais</h2>
+        <form id="vitals-form" autocomplete="off" novalidate>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="v-pa">PA</label>
+              <input type="text" id="v-pa" placeholder="120/80" inputmode="decimal">
+            </div>
+
+            <div class="form-group">
+              <label for="v-fc">FC (bpm)</label>
+              <input type="number" id="v-fc" placeholder="75" min="0" max="300" inputmode="numeric">
+            </div>
+
+            <div class="form-group">
+              <label for="v-fr">FR (irpm)</label>
+              <input type="number" id="v-fr" placeholder="18" min="0" max="60" inputmode="numeric">
+            </div>
+
+            <div class="form-group">
+              <label for="v-temp">Temp (°C)</label>
+              <input type="number" id="v-temp" placeholder="36.5" step="0.1" min="30" max="45" inputmode="decimal">
+            </div>
+
+            <div class="form-group">
+              <label for="v-spo2">SpO2 (%)</label>
+              <input type="number" id="v-spo2" placeholder="98" min="0" max="100" inputmode="numeric">
+            </div>
+
+            <div class="form-group">
+              <label for="v-glicemia">Glicemia (mg/dL)</label>
+              <input type="number" id="v-glicemia" placeholder="95" min="0" max="999" inputmode="numeric">
+            </div>
+
+            <div class="form-group form-group--full">
+              <label for="v-dor">Dor (0–10)</label>
+              <input type="number" id="v-dor" placeholder="0" min="0" max="10" inputmode="numeric">
+            </div>
+
+          </div><!-- /form-grid -->
+
+          <!-- Alertas em tempo real -->
+          <div id="alerts-area" class="alerts-area" role="status" aria-live="polite"></div>
+
+          <!-- Conduta — exibida apenas quando há alertas -->
+          <div id="conduta-group" class="form-group conduta-group hidden">
+            <label for="v-conduta">
+              Conduta <span class="required" aria-hidden="true">*</span>
+            </label>
+            <textarea id="v-conduta"
+                      placeholder="Descreva a conduta adotada..."
+                      rows="3"
+                      aria-required="true"></textarea>
+            <span id="conduta-error" class="field-error hidden" role="alert">
+              Conduta é obrigatória quando há alertas.
+            </span>
+          </div>
+
+          <!-- Feedback de salvamento -->
+          <div id="save-success"
+               class="alert alert-ok save-success hidden"
+               role="status"
+               aria-live="polite">
+            ✔️ Registro salvo com sucesso.
+          </div>
+
+          <button type="submit" class="btn btn-primary">Salvar Registro</button>
+
+        </form>
+      </section><!-- /vitals card -->
+
+      <!-- Histórico do paciente -->
+      <section class="card">
+        <h2>Histórico de Registros</h2>
+        <div id="history-list"></div>
+      </section>
+
+    </main>
+  </div><!-- /screen-patient -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>

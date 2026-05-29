@@ -1,0 +1,450 @@
+/* ============================================================
+   Regência Care — Mobile-first dark clinical theme
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:           #0f172a;
+  --bg-card:      #1e293b;
+  --bg-input:     #0f172a;
+  --border:       #334155;
+  --border-focus: #38bdf8;
+  --text:         #f1f5f9;
+  --text-muted:   #94a3b8;
+  --primary:      #38bdf8;
+  --primary-dark: #0ea5e9;
+  --warning:      #fbbf24;
+  --warning-bg:   #2d1a00;
+  --ok:           #4ade80;
+  --ok-bg:        #052e16;
+  --danger:       #f87171;
+  --radius:       14px;
+  --radius-sm:    8px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+/* ── Screens ──────────────────────────────────────────────── */
+
+.screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.app-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-info h1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.btn-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.btn-back:active {
+  background: var(--border);
+}
+
+/* ── Main content area ────────────────────────────────────── */
+
+main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Section headings ─────────────────────────────────────── */
+
+h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+}
+
+/* ── Forms ────────────────────────────────────────────────── */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 11px 13px;
+  width: 100%;
+  min-height: 48px;
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--border-focus);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--border);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 84px;
+  line-height: 1.5;
+}
+
+/* 2-column grid for vital fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+/* Stack form groups inside a card */
+.card .form-group + .form-group {
+  margin-top: 12px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 13px 20px;
+  min-height: 50px;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #0f172a;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+/* ── Patient cards ────────────────────────────────────────── */
+
+.patient-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  min-height: 64px;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.patient-card:last-child {
+  margin-bottom: 0;
+}
+
+.patient-card:active {
+  background: #253348;
+  border-color: var(--primary);
+}
+
+.patient-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.patient-bed {
+  font-size: 0.82rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Alerts ───────────────────────────────────────────────── */
+
+.alerts-area {
+  margin: 10px 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.alert-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.alert-ok {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+/* ── Conduta section ──────────────────────────────────────── */
+
+.conduta-group {
+  margin-top: 12px;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: var(--danger);
+  margin-top: 4px;
+}
+
+/* ── Save success banner ──────────────────────────────────── */
+
+.save-success {
+  margin-top: 10px;
+}
+
+/* ── History entries ──────────────────────────────────────── */
+
+.history-entry {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.history-entry:last-child {
+  margin-bottom: 0;
+}
+
+.history-entry-header {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  min-height: 54px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+
+.history-entry-header:active {
+  background: #1a2538;
+}
+
+.history-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.history-date {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+
+.badge-alert {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--warning);
+}
+
+.badge-ok {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ok);
+}
+
+.history-detail {
+  padding: 14px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
+
+.evolucao-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary);
+}
+
+/* ── Vitals table (in history) ────────────────────────────── */
+
+.vitals-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.vitals-table tr + tr td {
+  border-top: 1px solid var(--border);
+}
+
+.vitals-table td {
+  padding: 7px 8px;
+}
+
+.vt-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 90px;
+}
+
+.vt-val {
+  color: var(--text);
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+
+.empty-state {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 28px 0;
+}
+
+/* ── Safe area for notched devices ───────────────────────── */
+
+main {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
